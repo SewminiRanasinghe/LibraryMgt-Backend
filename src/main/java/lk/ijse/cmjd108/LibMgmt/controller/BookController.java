@@ -8,11 +8,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/books")
+
 public class BookController {
 
     @Autowired
@@ -45,97 +45,13 @@ public class BookController {
 
     @GetMapping("{bookId}")
     public ResponseEntity<BookDto> getSelectedBook(@PathVariable String bookId){
-        System.out.println("Selected book for "+bookId);
-        return ResponseEntity.ok(new BookDto(
-                "Kamla",
-                5,
-                "B005",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-                ));
+        return ResponseEntity.ok(bookService.getSelectedBook(bookId));
     }
 
     @GetMapping
     public ResponseEntity<List<BookDto>> getAllBooks(){
-        List<BookDto> bookDtos = new ArrayList<>();
 
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B001",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B002",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B003",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B004",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B005",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-
-        return ResponseEntity.ok(bookDtos);
+        return ResponseEntity.ok(bookService.getAllBooks());
     }
 
 }
