@@ -12,14 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/members")
-//@RequiredArgsConstructor
 public class MemberController {
 
     private MemberService memberService;
 
     @Autowired
     public MemberController(MemberService memberService) {
-       this.memberService = memberService;
+        this.memberService = memberService;
     }
 
     @GetMapping("health")
@@ -46,12 +45,12 @@ public class MemberController {
     }
 
     @GetMapping("{memberId}")
-    public ResponseEntity<MemberDto> getSelectedStaff(@PathVariable String memberId){
+    public ResponseEntity<MemberDto> getSelectedMember(@PathVariable String memberId){
         return ResponseEntity.ok(memberService.getSelectedMember(memberId));
     }
 
-    public ResponseEntity<List<MemberDto>> getAllStaffMembers(){
-
+    @GetMapping
+    public ResponseEntity<List<MemberDto>> getAllMembers(){
         return ResponseEntity.ok(memberService.getAllMembers());
     }
 

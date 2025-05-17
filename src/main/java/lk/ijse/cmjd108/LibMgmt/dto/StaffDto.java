@@ -1,13 +1,9 @@
 package lk.ijse.cmjd108.LibMgmt.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class StaffDto implements Serializable {
 
@@ -18,4 +14,74 @@ public class StaffDto implements Serializable {
     private String joinDate;
     private String phone;
     private Role role;
+
+    public StaffDto(String email, String firstName, String joinDate, String lastName, String phone, Role role, String staffId) {
+        this.email = email;
+        this.firstName = firstName;
+        this.joinDate = joinDate;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.role = role;
+        this.staffId = staffId;
+    }
+
+    public StaffDto() {
+
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(String joinDate) {
+        this.joinDate = joinDate;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(String staffId) {
+        this.staffId = staffId;
+    }
 }
