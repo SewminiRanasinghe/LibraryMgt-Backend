@@ -15,6 +15,7 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public void saveStaff(StaffDto staffDto) {
         staffDto.setStaffId(UtilData.generateStaffId());
+        staffDto.setJoinDate(String.valueOf(UtilData.generateTodayDate()));
         System.out.println(staffDto);
     }
 
