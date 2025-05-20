@@ -1,7 +1,8 @@
 package lk.ijse.cmjd108.LibMgmt.service.impl;
 
-import lk.ijse.cmjd108.LibMgmt.dto.BookDto;
-import lk.ijse.cmjd108.LibMgmt.service.BookService;
+import lk.ijse.cmjd108.LibMgmt.dto.*;
+import lk.ijse.cmjd108.LibMgmt.service.*;
+import lk.ijse.cmjd108.LibMgmt.util.UtilData;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,7 +12,9 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
     @Override
     public void addBook(BookDto bookDto) {
-
+        //Business Process
+        bookDto.setBookId(UtilData.generateBookId());
+        System.out.println(bookDto);
     }
 
     @Override

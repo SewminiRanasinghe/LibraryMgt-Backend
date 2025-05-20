@@ -1,7 +1,7 @@
 package lk.ijse.cmjd108.LibMgmt.controller;
 
 import lk.ijse.cmjd108.LibMgmt.dto.LendingDto;
-import lk.ijse.cmjd108.LibMgmt.service.LendingService;
+import lk.ijse.cmjd108.LibMgmt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
