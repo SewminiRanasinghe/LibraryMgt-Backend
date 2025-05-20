@@ -12,6 +12,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void saveMember(MemberDto member) {
         member.setMemberId(UtilData.generateMemberId());
+        member.setMembershipDate(String.valueOf(UtilData.generateTodayDate()));
         System.out.println(member.toString());
     }
 
