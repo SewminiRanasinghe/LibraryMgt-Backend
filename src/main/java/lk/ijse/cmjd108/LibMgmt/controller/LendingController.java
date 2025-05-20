@@ -13,12 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/lending")
 public class LendingController {
-    private LendingService lendingService;
-
     @Autowired
-    public LendingController(LendingService lendingService) {
-        this.lendingService = lendingService;
-    }
+    private LendingService lendingService;
 
     @GetMapping("health")
     public String healthTest(){

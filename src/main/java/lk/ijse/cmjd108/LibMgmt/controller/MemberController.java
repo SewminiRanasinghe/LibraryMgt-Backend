@@ -13,13 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/members")
 public class MemberController {
-
-    private MemberService memberService;
-
     @Autowired
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
+    private MemberService memberService;
 
     @GetMapping("health")
     public String healthTest(){

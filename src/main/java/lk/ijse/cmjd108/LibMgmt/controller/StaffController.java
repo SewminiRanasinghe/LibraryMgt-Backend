@@ -13,13 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/staff")
 public class StaffController {
-
-    private StaffService staffService;
-
     @Autowired
-    public StaffController(StaffService staffService) {
-        this.staffService = staffService;
-    }
+    private StaffService staffService;
 
     @GetMapping("health")
     public String healthTest(){
