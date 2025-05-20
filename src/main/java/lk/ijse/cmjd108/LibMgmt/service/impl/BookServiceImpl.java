@@ -14,6 +14,8 @@ public class BookServiceImpl implements BookService {
     public void addBook(BookDto bookDto) {
         //Business Process
         bookDto.setBookId(UtilData.generateBookId());
+        bookDto.setLastUpdateDate(String.valueOf(UtilData.generateTodayDate()));
+        bookDto.setLastUpdateTime(String.valueOf(UtilData.generateCurrentTime()));
         System.out.println(bookDto);
     }
 

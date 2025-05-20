@@ -1,5 +1,8 @@
 package lk.ijse.cmjd108.LibMgmt.util;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.UUID;
 
 public class UtilData {
@@ -19,5 +22,13 @@ public class UtilData {
 
     public static String generateLendingId(){
         return "L-"+ UUID.randomUUID();
+    }
+
+    //generate last update date and time
+    public static LocalDate generateTodayDate(){
+        return LocalDate.now();
+    }
+    public static Time generateCurrentTime(){
+        return Time.valueOf(LocalTime.now());
     }
 }
