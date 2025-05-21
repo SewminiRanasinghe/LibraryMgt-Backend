@@ -31,4 +31,12 @@ public class UtilData {
     public static Time generateCurrentTime(){
         return Time.valueOf(LocalTime.now());
     }
+
+    //generate return date
+    public static LocalDate generateReturnDate(){
+        return LocalDate.now().plusDays(7);
+    }
+    public static LocalDate calReturnDate(){
+        return LocalDate.now().minusDays(7);
+    }
 }

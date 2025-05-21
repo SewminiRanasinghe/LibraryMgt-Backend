@@ -35,7 +35,7 @@ public class LendingController {
 
     @PatchMapping(value = "/{lendingId}",consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Void> handOverBook(@PathVariable String lendingId, @RequestBody LendingDto lendingDto){
-        lendingService.handOverBook(lendingId,lendingDto);
+        lendingService.handOverBook(lendingId);
         return ResponseEntity.noContent().build();
     }
 
