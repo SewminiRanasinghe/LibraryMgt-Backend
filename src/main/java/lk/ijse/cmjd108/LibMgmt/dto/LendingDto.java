@@ -16,6 +16,20 @@ public class LendingDto implements Serializable {
     private Long overDueDays;
     private Double fineAmount;
 
+    @Override
+    public String toString() {
+        return "LendingDto{" +
+                "book='" + book + '\'' +
+                ", lendingId='" + lendingId + '\'' +
+                ", member='" + member + '\'' +
+                ", lendingDate='" + lendingDate + '\'' +
+                ", returnDate='" + returnDate + '\'' +
+                ", isActiveLending=" + isActiveLending +
+                ", overDueDays=" + overDueDays +
+                ", fineAmount=" + fineAmount +
+                '}';
+    }
+
     public LendingDto(String book, Double fineAmount, Boolean isActiveLending, String lendingDate, String lendingId, String member, Long overDueDays, String returnDate) {
         this.book = book;
         this.fineAmount = fineAmount;

@@ -84,4 +84,17 @@ public class StaffDto implements Serializable {
     public void setStaffId(String staffId) {
         this.staffId = staffId;
     }
+
+    @Override
+    public String toString() {
+        return "StaffDto{" +
+                "email='" + email + '\'' +
+                ", staffId='" + staffId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", joinDate='" + joinDate + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role=" + role +
+                '}';
+    }
 }

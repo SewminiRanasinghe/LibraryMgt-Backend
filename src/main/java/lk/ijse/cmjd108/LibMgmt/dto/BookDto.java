@@ -121,6 +121,23 @@ public class BookDto implements Serializable {
         return totalQty;
     }
 
+    @Override
+    public String toString() {
+        return "BookDto{" +
+                "author='" + author + '\'' +
+                ", bookId='" + bookId + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", edition='" + edition + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", price=" + price +
+                ", totalQty=" + totalQty +
+                ", availableQty=" + availableQty +
+                ", lastUpdateDate='" + lastUpdateDate + '\'' +
+                ", lastUpdateTime='" + lastUpdateTime + '\'' +
+                '}';
+    }
+
     public void setTotalQty(Integer totalQty) {
         this.totalQty = totalQty;
     }
