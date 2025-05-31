@@ -1,6 +1,7 @@
+/*
 package lk.ijse.cmjd108.LibMgmt.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,3 +31,4 @@ public class BookEntity {
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<LendingEntity> lendings;
 }
+*/
