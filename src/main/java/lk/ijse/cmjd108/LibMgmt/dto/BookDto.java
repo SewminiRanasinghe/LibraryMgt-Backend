@@ -1,6 +1,8 @@
 package lk.ijse.cmjd108.LibMgmt.dto;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.time.LocalDate;
 
 public class BookDto implements Serializable {
     private String bookId;
@@ -12,10 +14,10 @@ public class BookDto implements Serializable {
     private Double price;
     private Integer totalQty;
     private Integer availableQty;
-    private String lastUpdateDate;
-    private String lastUpdateTime;
+    private LocalDate lastUpdateDate;
+    private Time lastUpdateTime;
 
-    public BookDto(String author, Integer availableQty, String bookId, String bookName, String edition, String isbn, String lastUpdateDate, String lastUpdateTime, Double price, String publisher, Integer totalQty) {
+    public BookDto(String author, Integer availableQty, String bookId, String bookName, String edition, String isbn, LocalDate lastUpdateDate, Time lastUpdateTime, Double price, String publisher, Integer totalQty) {
         this.author = author;
         this.availableQty = availableQty;
         this.bookId = bookId;
@@ -85,19 +87,19 @@ public class BookDto implements Serializable {
         this.isbn = isbn;
     }
 
-    public String getLastUpdateDate() {
+    public LocalDate getLastUpdateDate() {
         return lastUpdateDate;
     }
 
-    public void setLastUpdateDate(String lastUpdateDate) {
+    public void setLastUpdateDate(LocalDate lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
 
-    public String getLastUpdateTime() {
+    public Time getLastUpdateTime() {
         return lastUpdateTime;
     }
 
-    public void setLastUpdateTime(String lastUpdateTime) {
+    public void setLastUpdateTime(Time lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
 

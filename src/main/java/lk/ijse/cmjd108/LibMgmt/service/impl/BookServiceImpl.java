@@ -1,11 +1,10 @@
 package lk.ijse.cmjd108.LibMgmt.service.impl;
 
-import lk.ijse.cmjd108.LibMgmt.dto.*;
-import lk.ijse.cmjd108.LibMgmt.service.*;
+import lk.ijse.cmjd108.LibMgmt.dto.BookDto;
+import lk.ijse.cmjd108.LibMgmt.service.BookService;
 import lk.ijse.cmjd108.LibMgmt.util.UtilData;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,9 +13,11 @@ public class BookServiceImpl implements BookService {
     public void addBook(BookDto bookDto) {
         //Business Process
         bookDto.setBookId(UtilData.generateBookId());
-        bookDto.setLastUpdateDate(String.valueOf(UtilData.generateTodayDate()));
-        bookDto.setLastUpdateTime(String.valueOf(UtilData.generateCurrentTime()));
-        System.out.println(bookDto);
+        bookDto.setLastUpdateDate(UtilData.generateTodayDate());
+        bookDto.setLastUpdateTime(UtilData.generateCurrentTime());
+
+        //pass to Dao
+
     }
 
     @Override
@@ -31,94 +32,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto getSelectedBook(String bookId) {
-        return  (new BookDto(
-                "Kamla",
-                5,
-                "B005",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
+        return  null;
     }
 
     @Override
     public List<BookDto> getAllBooks() {
-        List<BookDto> bookDtos = new ArrayList<>();
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B001",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
 
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B002",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B003",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B004",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-
-        bookDtos.add(new BookDto(
-                "Kamla",
-                5,
-                "B005",
-                "Spring boot",
-                "2015",
-                "1452-25",
-                "2024-10-15",
-                "10.15",
-                500.0,
-                "Oxford",
-                10
-        ));
-        return bookDtos;
+        return null;
 
     }
 }
