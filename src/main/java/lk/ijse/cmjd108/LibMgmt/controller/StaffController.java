@@ -16,11 +16,6 @@ public class StaffController {
     @Autowired
     private StaffService staffService;
 
-    @GetMapping("health")
-    public String healthTest(){
-        return "staff controller is running";
-    }
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addStaff(@RequestBody StaffDto staffDto){
         staffService.saveStaff(staffDto);

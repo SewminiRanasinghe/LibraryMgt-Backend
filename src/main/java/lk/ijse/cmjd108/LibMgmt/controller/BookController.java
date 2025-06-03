@@ -18,11 +18,6 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("health")
-    public String healthTest(){
-        return "Book controller is running";
-    }
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addBook(@RequestBody BookDto bookDto){
         bookService.addBook(bookDto);
