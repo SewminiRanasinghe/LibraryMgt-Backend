@@ -1,13 +1,13 @@
 package lk.ijse.cmjd108.LibMgmt.entities;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+
+@Entity
 @Table(name = "member")
 public class MemberEntity {
+    @Id
     private String memberId;
     private String name;
     private String email;

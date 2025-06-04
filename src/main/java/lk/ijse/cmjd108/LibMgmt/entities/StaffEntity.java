@@ -2,7 +2,7 @@ package lk.ijse.cmjd108.LibMgmt.entities;
 
 import lk.ijse.cmjd108.LibMgmt.dto.Role;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 @Entity
 public class StaffEntity {

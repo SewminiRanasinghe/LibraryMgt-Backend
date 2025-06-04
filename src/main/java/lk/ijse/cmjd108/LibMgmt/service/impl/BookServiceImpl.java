@@ -2,13 +2,25 @@ package lk.ijse.cmjd108.LibMgmt.service.impl;
 
 import lk.ijse.cmjd108.LibMgmt.dto.BookDto;
 import lk.ijse.cmjd108.LibMgmt.service.BookService;
+import lk.ijse.cmjd108.LibMgmt.util.EntityDTOConvertion;
 import lk.ijse.cmjd108.LibMgmt.util.UtilData;
+import lk.ijse.cmjd108.LibMgmt.dao.BookDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
+    private EntityDTOConvertion entityDTOConvertion;
+
+    private final BookDao bookDao;
+
+    @Autowired
+    public BookServiceImpl(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
+
     @Override
     public void addBook(BookDto bookDto) {
         //Business Process
@@ -17,7 +29,8 @@ public class BookServiceImpl implements BookService {
         bookDto.setLastUpdateTime(UtilData.generateCurrentTime());
 
         //pass to Dao
-
+        var bookEntity = entityDTOConvertion.convertBookDTOTOBookEntity(bookDto);
+        bookDao.save(bookEntity);
     }
 
     @Override
