@@ -7,17 +7,20 @@ import lk.ijse.cmjd108.LibMgmt.util.UtilData;
 import lk.ijse.cmjd108.LibMgmt.dao.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class BookServiceImpl implements BookService {
-    private EntityDTOConvertion entityDTOConvertion;
 
+    private final EntityDTOConvertion entityDTOConvertion;
     private final BookDao bookDao;
 
     @Autowired
-    public BookServiceImpl(BookDao bookDao) {
+    public BookServiceImpl(EntityDTOConvertion entityDTOConvertion, BookDao bookDao) {
+        this.entityDTOConvertion = entityDTOConvertion;
         this.bookDao = bookDao;
     }
 
