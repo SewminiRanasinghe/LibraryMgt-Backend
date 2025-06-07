@@ -1,6 +1,7 @@
 package lk.ijse.cmjd108.LibMgmt.controller;
 
 import lk.ijse.cmjd108.LibMgmt.dto.BookDto;
+import lk.ijse.cmjd108.LibMgmt.exception.BookNotFoundException;
 import lk.ijse.cmjd108.LibMgmt.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,17 @@ public class BookController {
 
     @DeleteMapping
     public ResponseEntity<Void> deleteBook(@RequestParam("bookId") String bookId){
-        System.out.println(bookId);
-        return ResponseEntity.noContent().build();
+        try {
+            bookService.deleteBook(bookId);
+            return ResponseEntity.noContent().build();
+        }catch (BookNotFoundException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @PatchMapping(value = "/{bookId}",consumes = MediaType.APPLICATION_JSON_VALUE )
