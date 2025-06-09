@@ -41,7 +41,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBook(String bookId) {
-        //is AvlbleAdd commentMore actions
+        //is AvailableAdd commentMore actions
         Optional<BookEntity> foundBook = bookDao.findById(bookId);
         if(!foundBook.isPresent()){
             throw new BookNotFoundException("Book not found");
@@ -52,6 +52,20 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void updateBook(String bookId, BookDto bookDto) {
+        Optional<BookEntity> foundBook = bookDao.findById(bookId);
+        if(!foundBook.isPresent()){
+            throw new BookNotFoundException("Book not found");
+        }
+        foundBook.get().setBookName(bookDto.getBookName());
+        foundBook.get().setAuthor(bookDto.getAuthor());
+        foundBook.get().setEdition(bookDto.getEdition());
+        foundBook.get().setPublisher(bookDto.getPublisher());
+        foundBook.get().setIsbn(bookDto.getIsbn());
+        foundBook.get().setPrice(bookDto.getPrice());
+        foundBook.get().setTotalQty(bookDto.getTotalQty());
+        foundBook.get().setAvilableQty(bookDto.getAvailableQty());
+        foundBook.get().setLastUpdateDate(UtilData.generateTodayDate());
+        foundBook.get().setLastUpdateTime(UtilData.generateCurrentTime());
 
     }
 

@@ -42,8 +42,7 @@ public class BookController {
 
     @PatchMapping(value = "/{bookId}",consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Void> updateBook(@PathVariable String bookId, @RequestBody BookDto bookDto){
-        System.out.println(bookId);
-        System.out.println(bookDto);
+        bookService.updateBook(bookId,bookDto);
         return ResponseEntity.noContent().build();
     }
 
