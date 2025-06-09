@@ -42,8 +42,17 @@ public class BookController {
 
     @PatchMapping(value = "/{bookId}",consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Void> updateBook(@PathVariable String bookId, @RequestBody BookDto bookDto){
-        bookService.updateBook(bookId,bookDto);
-        return ResponseEntity.noContent().build();
+        try{
+            bookService.updateBook(bookId,bookDto);
+            return ResponseEntity.noContent().build();
+        }catch (BookNotFoundException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @GetMapping("{bookId}")
