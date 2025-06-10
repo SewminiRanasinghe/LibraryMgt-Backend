@@ -1,14 +1,15 @@
 package lk.ijse.cmjd108.LibMgmt.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class MemberDto implements Serializable {
     private String memberId;
     private String name;
     private String email;
-    private String membershipDate;
+    private LocalDate membershipDate;
 
-    public MemberDto(String email, String memberId, String membershipDate, String name) {
+    public MemberDto(String email, String memberId, LocalDate membershipDate, String name) {
         this.email = email;
         this.memberId = memberId;
         this.membershipDate = membershipDate;
@@ -34,11 +35,11 @@ public class MemberDto implements Serializable {
         this.memberId = memberId;
     }
 
-    public String getMembershipDate() {
+    public LocalDate getMembershipDate() {
         return membershipDate;
     }
 
-    public void setMembershipDate(String membershipDate) {
+    public void setMembershipDate(LocalDate membershipDate) {
         this.membershipDate = membershipDate;
     }
 
