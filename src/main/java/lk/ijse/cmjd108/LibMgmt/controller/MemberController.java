@@ -27,6 +27,9 @@ public class MemberController {
 
     @DeleteMapping
     public ResponseEntity<Void> deleteMember(@RequestParam("memberId") String memberId){
+        if(memberId == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         memberService.deleteMember(memberId);
         return ResponseEntity.noContent().build();
     }
