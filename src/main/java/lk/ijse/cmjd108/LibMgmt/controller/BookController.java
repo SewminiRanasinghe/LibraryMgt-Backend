@@ -21,12 +21,18 @@ public class BookController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addBook(@RequestBody BookDto bookDto){
+        if(bookDto == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         bookService.addBook(bookDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping
     public ResponseEntity<Void> deleteBook(@RequestParam("bookId") String bookId){
+        if(bookId == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         try {
             bookService.deleteBook(bookId);
             return ResponseEntity.noContent().build();
@@ -42,6 +48,9 @@ public class BookController {
 
     @PatchMapping(value = "/{bookId}",consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Void> updateBook(@PathVariable String bookId, @RequestBody BookDto bookDto){
+        if(bookId == null || bookDto == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         try{
             bookService.updateBook(bookId,bookDto);
             return ResponseEntity.noContent().build();
@@ -57,6 +66,9 @@ public class BookController {
 
     @GetMapping("{bookId}")
     public ResponseEntity<BookDto> getSelectedBook(@PathVariable String bookId){
+        if(bookId == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         try{
             var selectedBook = bookService.getSelectedBook(bookId);
             return ResponseEntity.ok(selectedBook);
