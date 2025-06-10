@@ -57,7 +57,16 @@ public class BookController {
 
     @GetMapping("{bookId}")
     public ResponseEntity<BookDto> getSelectedBook(@PathVariable String bookId){
-        return ResponseEntity.ok(bookService.getSelectedBook(bookId));
+        try{
+            var selectedBook = bookService.getSelectedBook(bookId);
+            return ResponseEntity.ok(selectedBook);
+        }catch (BookNotFoundException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping
