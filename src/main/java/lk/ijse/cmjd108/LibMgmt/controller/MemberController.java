@@ -1,6 +1,7 @@
 package lk.ijse.cmjd108.LibMgmt.controller;
 
 import lk.ijse.cmjd108.LibMgmt.dto.MemberDto;
+import lk.ijse.cmjd108.LibMgmt.exception.MemberNotFoundException;
 import lk.ijse.cmjd108.LibMgmt.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,8 +31,14 @@ public class MemberController {
         if(memberId == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        memberService.deleteMember(memberId);
-        return ResponseEntity.noContent().build();
+        try {
+            memberService.deleteMember(memberId);
+            return ResponseEntity.noContent().build();
+        }catch (MemberNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PatchMapping(value = "/{memberId}",consumes = MediaType.APPLICATION_JSON_VALUE )

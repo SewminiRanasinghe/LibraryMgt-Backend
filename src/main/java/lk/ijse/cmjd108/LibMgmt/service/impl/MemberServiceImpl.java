@@ -2,6 +2,7 @@ package lk.ijse.cmjd108.LibMgmt.service.impl;
 
 import lk.ijse.cmjd108.LibMgmt.dao.MemberDao;
 import lk.ijse.cmjd108.LibMgmt.dto.MemberDto;
+import lk.ijse.cmjd108.LibMgmt.exception.MemberNotFoundException;
 import lk.ijse.cmjd108.LibMgmt.service.MemberService;
 import lk.ijse.cmjd108.LibMgmt.util.EntityDTOConvertion;
 import lk.ijse.cmjd108.LibMgmt.util.UtilData;
@@ -36,7 +37,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void deleteMember(String memberId) {
-
+        if(!memberDao.findById(memberId).isPresent()){
+            throw new MemberNotFoundException("Member details not exist");
+        }
+        memberDao.deleteById(memberId);
     }
 
     @Override
