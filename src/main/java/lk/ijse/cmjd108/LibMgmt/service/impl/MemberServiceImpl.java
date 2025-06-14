@@ -52,7 +52,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberDto getSelectedMember(String memberId) {
-        return null;
+        if(!memberDao.findById(memberId).isPresent()){
+            throw new MemberNotFoundException("Member details not exist");
+        }
+        return entityDTOConvertion.convertMemberEntityTOMemberDTO(memberDao.getReferenceById(memberId));
     }
 
     @Override
