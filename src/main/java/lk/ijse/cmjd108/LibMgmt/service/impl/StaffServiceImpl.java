@@ -45,7 +45,7 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public StaffDto getSelectedStaff(String staffId) {
         if(!staffDao.findById(staffId).isPresent()){
-            throw new MemberNotFoundException("Member details not exist");
+            throw new MemberNotFoundException("Staff details not exist");
         }
         return entityDTOConvertion.convertStaffEntityTOStaffDTO(staffDao.getReferenceById(staffId));
     }

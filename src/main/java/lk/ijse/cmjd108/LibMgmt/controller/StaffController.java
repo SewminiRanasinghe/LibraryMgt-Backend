@@ -60,12 +60,11 @@ public class StaffController {
     }
 
     @GetMapping("{staffId}")
-    public ResponseEntity<StaffDto> getSelectedStaff(@PathVariable String staffId, @RequestBody StaffDto staffDto){
-        if(staffId == null || staffDto == null){
+    public ResponseEntity<StaffDto> getSelectedStaff(@PathVariable String staffId){
+        if(staffId == null ){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }try {
-            staffService.updateStaff(staffId,staffDto);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok(staffService.getSelectedStaff(staffId));
         }catch (StaffNotFoundException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -76,7 +75,7 @@ public class StaffController {
 
     }
 
-    @GetMapping
+    @GetMapping("getallstaff")
     public ResponseEntity<List<StaffDto>> getAllStaffMembers(){
         return ResponseEntity.ok(staffService.getAllStaff());
     }
