@@ -2,8 +2,10 @@ package lk.ijse.cmjd108.LibMgmt.util;
 
 import lk.ijse.cmjd108.LibMgmt.dto.BookDto;
 import lk.ijse.cmjd108.LibMgmt.dto.MemberDto;
+import lk.ijse.cmjd108.LibMgmt.dto.StaffDto;
 import lk.ijse.cmjd108.LibMgmt.entities.BookEntity;
 import lk.ijse.cmjd108.LibMgmt.entities.MemberEntity;
+import lk.ijse.cmjd108.LibMgmt.entities.StaffEntity;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
@@ -39,5 +41,17 @@ public class EntityDTOConvertion {
 
     public List<MemberDto> toMemberDtoList(List<MemberEntity> memberEntities){
         return modelMapper.map(memberEntities,new TypeToken<List<MemberDto>>(){}.getType());
+    }
+
+    //Staff
+    public StaffEntity convertStaffDtoToStaffEntity(StaffDto staffDto){
+        return modelMapper.map(staffDto, StaffEntity.class);
+    }
+    public StaffDto convertStaffEntityTOStaffDTO(StaffEntity staffEntity){
+        return modelMapper.map(staffEntity,StaffDto.class);
+    }
+
+    public List<StaffDto> toStaffDtoList(List<StaffEntity> staffEntities){
+        return modelMapper.map(staffEntities,new TypeToken<List<StaffDto>>(){}.getType());
     }
 }
