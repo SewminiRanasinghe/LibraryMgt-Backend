@@ -60,9 +60,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<MemberDto> getAllMembers() {
-
-
-        return null;
+        return entityDTOConvertion.toMemberDtoList(memberDao.findAll());
 
     }
 }

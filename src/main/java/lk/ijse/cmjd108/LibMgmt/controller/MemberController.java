@@ -78,8 +78,9 @@ public class MemberController {
 
     }
 
-    @GetMapping
+    @GetMapping("getallmembers")
     public ResponseEntity<List<MemberDto>> getAllMembers(){
+
         return ResponseEntity.ok(memberService.getAllMembers());
     }
 
