@@ -6,6 +6,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "lending")
@@ -18,8 +20,8 @@ public class LendingEntity {
     @ManyToOne
     @JoinColumn(name = "memberId", nullable = false)
     private MemberEntity member;
-    private String lendingDate;
-    private String returnDate;
+    private LocalDate lendingDate;
+    private LocalDate returnDate;
     private Boolean isActiveLending;
     private Long overDueDays;
     private Double fineAmount;
@@ -27,7 +29,7 @@ public class LendingEntity {
     public LendingEntity() {
     }
 
-    public LendingEntity(BookEntity book, Double fineAmount, Boolean isActiveLending, String lendingDate, String lendingId, MemberEntity member, Long overDueDays, String returnDate) {
+    public LendingEntity(BookEntity book, Double fineAmount, Boolean isActiveLending, LocalDate lendingDate, String lendingId, MemberEntity member, Long overDueDays, LocalDate returnDate) {
         this.book = book;
         this.fineAmount = fineAmount;
         this.isActiveLending = isActiveLending;
@@ -62,11 +64,11 @@ public class LendingEntity {
         isActiveLending = activeLending;
     }
 
-    public String getLendingDate() {
+    public LocalDate getLendingDate() {
         return lendingDate;
     }
 
-    public void setLendingDate(String lendingDate) {
+    public void setLendingDate(LocalDate lendingDate) {
         this.lendingDate = lendingDate;
     }
 
@@ -94,11 +96,11 @@ public class LendingEntity {
         this.overDueDays = overDueDays;
     }
 
-    public String getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(String returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 

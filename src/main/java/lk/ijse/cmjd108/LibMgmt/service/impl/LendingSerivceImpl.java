@@ -1,14 +1,24 @@
 package lk.ijse.cmjd108.LibMgmt.service.impl;
 
+import lk.ijse.cmjd108.LibMgmt.dao.BookDao;
+import lk.ijse.cmjd108.LibMgmt.dao.LendingDao;
+import lk.ijse.cmjd108.LibMgmt.dao.MemberDao;
 import lk.ijse.cmjd108.LibMgmt.dto.LendingDto;
+import lk.ijse.cmjd108.LibMgmt.entities.BookEntity;
+import lk.ijse.cmjd108.LibMgmt.entities.MemberEntity;
+import lk.ijse.cmjd108.LibMgmt.exception.BookNotFoundException;
+import lk.ijse.cmjd108.LibMgmt.exception.EnoughBooksNotFoundException;
+import lk.ijse.cmjd108.LibMgmt.exception.MemberNotFoundException;
 import lk.ijse.cmjd108.LibMgmt.service.LendingService;
+import lk.ijse.cmjd108.LibMgmt.util.EntityDTOConvertion;
+import lk.ijse.cmjd108.LibMgmt.util.LendingMapping;
 import lk.ijse.cmjd108.LibMgmt.util.UtilData;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,16 +26,46 @@ public class LendingSerivceImpl implements LendingService {
 
     @Value("${finePerDay}")
     private Double finePerDay;
+    private final LendingMapping lendingMapping;
+    private final BookDao bookDao;
+    private final MemberDao memberDao;
+    private final LendingDao lendingDao;
+    private final EntityDTOConvertion entityDTOConvertion;
+
+    public LendingSerivceImpl(LendingMapping lendingMapping, BookDao bookDao, MemberDao memberDao, LendingDao lendingDao, EntityDTOConvertion entityDTOConvertion) {
+        this.lendingMapping = lendingMapping;
+        this.bookDao = bookDao;
+        this.memberDao = memberDao;
+        this.lendingDao = lendingDao;
+        this.entityDTOConvertion = entityDTOConvertion;
+    }
+
 
     @Override
     public void addLendingData(LendingDto lendingDto) {
+        //relevant book
+        //relevant member
+        String bookId = lendingDto.getBook();
+        String memberId = lendingDto.getMember();
+        BookEntity bookEntity = bookDao.findById(bookId).orElseThrow(()-> new BookNotFoundException("Book not Found"));
+        MemberEntity memberEntity = memberDao.findById(memberId).orElseThrow(()-> new MemberNotFoundException("Member not found"));
+
+        //check the availability of book
+        if (bookDao.availableQty(bookId)>0){
+            //Books are available
+
+        }else{
+            throw new EnoughBooksNotFoundException("Not enough books to proceed")
+        }
+
+
         lendingDto.setLendingId(UtilData.generateLendingId());
-        lendingDto.setLendingDate(String.valueOf(UtilData.generateTodayDate()));
-        lendingDto.setReturnDate(String.valueOf(UtilData.generateReturnDate()));
+        lendingDto.setLendingDate(UtilData.generateTodayDate());
+        lendingDto.setReturnDate(UtilData.generateReturnDate());
         lendingDto.setActiveLending(true);
         lendingDto.setFineAmount(0.00);
         lendingDto.setOverDueDays(0L);
-        System.out.println(lendingDto);
+        System.out.okility of boprintln(lendingDto);
     }
 
     @Override
@@ -40,62 +80,12 @@ public class LendingSerivceImpl implements LendingService {
 
     @Override
     public LendingDto getSelectedLendingData(String lendingId) {
-        LendingDto lendingData = new LendingDto();
-        lendingData.setLendingId("L123");
-        lendingData.setBook("The Greate Gatsby");
-        lendingData.setMember("M1234");
-        lendingData.setLendingDate("01-01-2025");
-        lendingData.setReturnDate("14-01-2025");
-        lendingData.setOverDueDays(2L);
-        lendingData.setFineAmount(5.00);
-        return lendingData;
+      return null;
     }
 
     @Override
     public List<LendingDto> getAllLendingData() {
-        List<LendingDto> lendingDtos= new ArrayList<>();
-
-        LendingDto lendingData1 = new LendingDto();
-        lendingData1.setLendingId("L001");
-        lendingData1.setBook("The Greate Gatsby");
-        lendingData1.setMember("M1234");
-        lendingData1.setLendingDate("01-01-2025");
-        lendingData1.setReturnDate("14-01-2025");
-        lendingData1.setOverDueDays(2L);
-        lendingData1.setFineAmount(5.00);
-        lendingDtos.add(lendingData1);
-
-        LendingDto lendingData2 = new LendingDto();
-        lendingData2.setLendingId("L002");
-        lendingData2.setBook("The Greate Gatsby");
-        lendingData2.setMember("M1234");
-        lendingData2.setLendingDate("01-01-2025");
-        lendingData2.setReturnDate("14-01-2025");
-        lendingData2.setOverDueDays(2L);
-        lendingData2.setFineAmount(5.00);
-        lendingDtos.add(lendingData2);
-
-        LendingDto lendingData3 = new LendingDto();
-        lendingData3.setLendingId("L003");
-        lendingData3.setBook("The Greate Gatsby");
-        lendingData3.setMember("M1234");
-        lendingData3.setLendingDate("01-01-2025");
-        lendingData3.setReturnDate("14-01-2025");
-        lendingData3.setOverDueDays(2L);
-        lendingData3.setFineAmount(5.00);
-        lendingDtos.add(lendingData3);
-
-        LendingDto lendingData4 = new LendingDto();
-        lendingData4.setLendingId("L004");
-        lendingData4.setBook("The Greate Gatsby");
-        lendingData4.setMember("M1234");
-        lendingData4.setLendingDate("01-01-2025");
-        lendingData4.setReturnDate("14-01-2025");
-        lendingData4.setOverDueDays(2L);
-        lendingData4.setFineAmount(5.00);
-        lendingDtos.add(lendingData4);
-
-        return lendingDtos;
+        return null;
 
     }
     private Long calOverDue(){

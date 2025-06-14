@@ -3,6 +3,7 @@ package lk.ijse.cmjd108.LibMgmt.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 
 @Data
@@ -10,8 +11,8 @@ public class LendingDto implements Serializable {
     private String lendingId;
     private String book;
     private String member;
-    private String lendingDate;
-    private String returnDate;
+    private LocalDate lendingDate;
+    private LocalDate returnDate;
     private Boolean isActiveLending;
     private Long overDueDays;
     private Double fineAmount;
@@ -30,7 +31,7 @@ public class LendingDto implements Serializable {
                 '}';
     }
 
-    public LendingDto(String book, Double fineAmount, Boolean isActiveLending, String lendingDate, String lendingId, String member, Long overDueDays, String returnDate) {
+    public LendingDto(String book, Double fineAmount, Boolean isActiveLending, LocalDate lendingDate, String lendingId, String member, Long overDueDays, LocalDate returnDate) {
         this.book = book;
         this.fineAmount = fineAmount;
         this.isActiveLending = isActiveLending;
@@ -92,19 +93,19 @@ public class LendingDto implements Serializable {
         this.overDueDays = overDueDays;
     }
 
-    public String getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(String returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 
-    public String getLendingDate() {
+    public LocalDate getLendingDate() {
         return lendingDate;
     }
 
-    public void setLendingDate(String lendingDate) {
+    public void setLendingDate(LocalDate lendingDate) {
         this.lendingDate = lendingDate;
     }
 }
