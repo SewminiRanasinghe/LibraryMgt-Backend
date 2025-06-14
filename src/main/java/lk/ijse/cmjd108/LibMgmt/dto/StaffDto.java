@@ -3,6 +3,7 @@ package lk.ijse.cmjd108.LibMgmt.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Data
 public class StaffDto implements Serializable {
@@ -11,11 +12,11 @@ public class StaffDto implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
-    private String joinDate;
+    private LocalDate joinDate;
     private String phone;
     private Role role;
 
-    public StaffDto(String email, String firstName, String joinDate, String lastName, String phone, Role role, String staffId) {
+    public StaffDto(String email, String firstName, LocalDate joinDate, String lastName, String phone, Role role, String staffId) {
         this.email = email;
         this.firstName = firstName;
         this.joinDate = joinDate;
@@ -45,11 +46,11 @@ public class StaffDto implements Serializable {
         this.firstName = firstName;
     }
 
-    public String getJoinDate() {
+    public LocalDate getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(String joinDate) {
+    public void setJoinDate(LocalDate joinDate) {
         this.joinDate = joinDate;
     }
 
