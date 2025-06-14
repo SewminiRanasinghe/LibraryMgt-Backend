@@ -2,6 +2,7 @@ package lk.ijse.cmjd108.LibMgmt.service.impl;
 
 import lk.ijse.cmjd108.LibMgmt.dao.StaffDao;
 import lk.ijse.cmjd108.LibMgmt.dto.StaffDto;
+import lk.ijse.cmjd108.LibMgmt.exception.MemberNotFoundException;
 import lk.ijse.cmjd108.LibMgmt.service.StaffService;
 import lk.ijse.cmjd108.LibMgmt.util.EntityDTOConvertion;
 import lk.ijse.cmjd108.LibMgmt.util.UtilData;
@@ -34,17 +35,24 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void deleteStaff(String staffId) {
+        if(!staffDao.findById(staffId).isPresent()){
+            throw new MemberNotFoundException("Member details not exist");
+        }
+        staffDao.deleteById(staffId);
 
     }
 
     @Override
     public StaffDto getSelectedStaff(String staffId) {
-        return null;
+        if(!staffDao.findById(staffId).isPresent()){
+            throw new MemberNotFoundException("Member details not exist");
+        }
+        return entityDTOConvertion.convertStaffEntityTOStaffDTO(staffDao.getReferenceById(staffId));
     }
 
     @Override
     public List<StaffDto> getAllStaff() {
-       return null;
+        return entityDTOConvertion.toStaffDtoList(staffDao.findAll());
 
     }
 }
