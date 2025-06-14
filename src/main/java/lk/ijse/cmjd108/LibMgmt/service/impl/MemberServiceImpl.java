@@ -32,11 +32,18 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void updateMember(String memberId, MemberDto member) {
-
+        var selectedMember = memberDao.findById(memberId);
+        if(!selectedMember.isPresent()){
+            throw new MemberNotFoundException("Memeber not found !");
+        }
+        selectedMember.get().setEmail(member.getEmail());
+        selectedMember.get().setName(member.getName());
+        selectedMember.get().setMembershipDate(UtilData.generateTodayDate());
     }
 
     @Override
     public void deleteMember(String memberId) {
+
         if(!memberDao.findById(memberId).isPresent()){
             throw new MemberNotFoundException("Member details not exist");
         }
