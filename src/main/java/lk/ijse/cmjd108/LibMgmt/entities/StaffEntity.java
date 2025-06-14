@@ -4,6 +4,8 @@ import lk.ijse.cmjd108.LibMgmt.dto.Role;
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+
 @Entity
 public class StaffEntity {
     @Id
@@ -11,14 +13,14 @@ public class StaffEntity {
     private String firstName;
     private String lastName;
     private String email;
-    private String joinDate;
+    private LocalDate joinDate;
     private String phone;
     private Role role;
 
     public StaffEntity() {
     }
 
-    public StaffEntity(String email, String firstName, String joinDate, String lastName, String phone, Role role, String staffId) {
+    public StaffEntity(String email, String firstName, LocalDate joinDate, String lastName, String phone, Role role, String staffId) {
         this.email = email;
         this.firstName = firstName;
         this.joinDate = joinDate;
@@ -44,11 +46,11 @@ public class StaffEntity {
         this.firstName = firstName;
     }
 
-    public String getJoinDate() {
+    public LocalDate getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(String joinDate) {
+    public void setJoinDate(LocalDate joinDate) {
         this.joinDate = joinDate;
     }
 

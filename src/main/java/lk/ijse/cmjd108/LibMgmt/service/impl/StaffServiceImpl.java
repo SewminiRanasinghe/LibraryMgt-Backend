@@ -30,6 +30,16 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void updateStaff(String staffId,StaffDto staffDto) {
+        var foundStaffMember = staffDao.findById(staffId);
+        if(!staffDao.findById(staffId).isPresent()){
+            throw new MemberNotFoundException("Member details not exist");
+        }
+        foundStaffMember.get().setFirstName(staffDto.getFirstName());
+        foundStaffMember.get().setLastName(staffDto.getLastName());
+        foundStaffMember.get().setEmail(staffDto.getEmail());
+        foundStaffMember.get().setJoinDate(staffDto.getJoinDate());
+        foundStaffMember.get().setRole(staffDto.getRole());
+        foundStaffMember.get().setPhone(staffDto.getPhone());
 
     }
 
