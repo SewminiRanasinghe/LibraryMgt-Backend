@@ -13,7 +13,6 @@ import lk.ijse.cmjd108.LibMgmt.service.LendingService;
 import lk.ijse.cmjd108.LibMgmt.util.EntityDTOConvertion;
 import lk.ijse.cmjd108.LibMgmt.util.LendingMapping;
 import lk.ijse.cmjd108.LibMgmt.util.UtilData;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -47,15 +46,15 @@ public class LendingSerivceImpl implements LendingService {
         //relevant member
         String bookId = lendingDto.getBook();
         String memberId = lendingDto.getMember();
-        BookEntity bookEntity = bookDao.findById(bookId).orElseThrow(()-> new BookNotFoundException("Book not Found"));
-        MemberEntity memberEntity = memberDao.findById(memberId).orElseThrow(()-> new MemberNotFoundException("Member not found"));
+        BookEntity bookEntity = bookDao.findById(bookId).orElseThrow(() -> new BookNotFoundException("Book not Found"));
+        MemberEntity memberEntity = memberDao.findById(memberId).orElseThrow(() -> new MemberNotFoundException("Member not found"));
 
         //check the availability of book
-        if (bookDao.availableQty(bookId)>0){
+        if (bookDao.availableQty(bookId) > 0) {
             //Books are available
 
-        }else{
-            throw new EnoughBooksNotFoundException("Not enough books to proceed")
+        } else {
+            throw new EnoughBooksNotFoundException("Not enough books to proceed");
         }
 
 
@@ -65,7 +64,6 @@ public class LendingSerivceImpl implements LendingService {
         lendingDto.setActiveLending(true);
         lendingDto.setFineAmount(0.00);
         lendingDto.setOverDueDays(0L);
-        System.out.okility of boprintln(lendingDto);
     }
 
     @Override
