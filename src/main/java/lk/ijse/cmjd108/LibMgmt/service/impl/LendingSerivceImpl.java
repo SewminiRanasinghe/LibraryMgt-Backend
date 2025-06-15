@@ -7,6 +7,7 @@ import lk.ijse.cmjd108.LibMgmt.dto.LendingDto;
 import lk.ijse.cmjd108.LibMgmt.entities.BookEntity;
 import lk.ijse.cmjd108.LibMgmt.entities.MemberEntity;
 import lk.ijse.cmjd108.LibMgmt.exception.BookNotFoundException;
+import lk.ijse.cmjd108.LibMgmt.exception.DataPersistException;
 import lk.ijse.cmjd108.LibMgmt.exception.EnoughBooksNotFoundException;
 import lk.ijse.cmjd108.LibMgmt.exception.MemberNotFoundException;
 import lk.ijse.cmjd108.LibMgmt.service.LendingService;
@@ -52,6 +53,11 @@ public class LendingSerivceImpl implements LendingService {
         //check the availability of book
         if (bookDao.availableQty(bookId) > 0) {
             //Books are available
+            if(bookDao.deductBasedOnLending(bookId) > 0){
+                //proceed the lending
+            }else {
+                throw new DataPersistException("Cannot update book data with 0 available Qty");
+            }
 
         } else {
             throw new EnoughBooksNotFoundException("Not enough books to proceed");
